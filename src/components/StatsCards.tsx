@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import type { ReactNode } from 'react'
 import type { Lead } from '../lib/supabase'
 
 interface StatsCardsProps {
@@ -9,7 +10,7 @@ interface StatsCardsProps {
 interface StatConfig {
   label: string
   value: string | number
-  icon: JSX.Element
+  icon: ReactNode
   gradient: string
   shadowColor: string
   change?: string
