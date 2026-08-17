@@ -1,16 +1,9 @@
-import { useAuth } from '../context/AuthContext'
-
 interface HeaderProps {
   onRefresh: () => void
   loading: boolean
 }
 
 export default function Header({ onRefresh, loading }: HeaderProps) {
-  const { user, signOut } = useAuth()
-
-  const userInitial = user?.email?.charAt(0).toUpperCase() ?? 'U'
-  const userEmail = user?.email ?? ''
-
   return (
     <header className="glass sticky top-0 z-50 border-b border-surface-700/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,40 +42,6 @@ export default function Header({ onRefresh, loading }: HeaderProps) {
               </svg>
               Refresh
             </button>
-
-            {/* Logout button */}
-            <button
-              onClick={signOut}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium
-                bg-surface-800/80 hover:bg-danger-500/20 text-surface-400 hover:text-danger-400
-                border border-surface-700/50 hover:border-danger-500/30
-                transition-all duration-200 group"
-            >
-              <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-              </svg>
-              Logout
-            </button>
-
-            {/* User avatar with email tooltip */}
-            <div className="relative group/avatar">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-accent-500 flex items-center justify-center text-xs font-bold shadow-lg shadow-primary-500/20 cursor-default">
-                {userInitial}
-              </div>
-              {/* Tooltip */}
-              {userEmail && (
-                <div className="absolute right-0 top-full mt-2 px-3 py-1.5 rounded-lg bg-surface-800 border border-surface-700/50
-                  text-xs text-surface-300 whitespace-nowrap opacity-0 invisible
-                  group-hover/avatar:opacity-100 group-hover/avatar:visible
-                  transition-all duration-200 shadow-xl pointer-events-none">
-                  {userEmail}
-                  <div className="absolute -top-1 right-3 w-2 h-2 bg-surface-800 border-l border-t border-surface-700/50 rotate-45" />
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>
